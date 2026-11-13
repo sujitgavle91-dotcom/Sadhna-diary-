@@ -1,0 +1,6 @@
+{
+  "name": "महाकाली साधना",
+  "description": "माँ महाकाली मंत्र जप साधना संकल्प गणना, दैनंदिन जप वेळ नोंद (बसण्याची व उठण्याची वेळ), प्रगती अहवाल ग्राफ आणि बॅकअप अ‍ॅप.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">महाकाली साधना</string>
+    <string name="cd_hero_banner">माँ महाकाली साधना मंदिर - जास्वंदाची फुले, दिवा आणि रुद्राक्ष माळ</string>
+    <string name="cd_empty_sadhana">माँ महाकाली पूजन - जास्वंद, कुंकू, रुद्राक्ष माळ आणि दिवा</string>
+    <string name="cd_add_sankalp">नवीन संकल्प जोडा</string>
+    <string name="cd_add_session">जप नोंद जोडा</string>
+    <string name="cd_edit_sankalp">संकल्प संपादित करा</string>
+    <string name="cd_delete_item">नोंद हटवा</string>
+    <string name="cd_edit_item">नोंद संपादित करा</string>
+    <string name="cd_backup_export">बॅकअप सेव्ह करा</string>
+    <string name="cd_backup_restore">बॅकअप परत आणा</string>
+</resources>
