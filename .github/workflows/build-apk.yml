@@ -81,6 +81,31 @@ jobs:
             exit 1
           fi
 
+      - name: Prepare Android SDK
+        run: |
+          set -euo pipefail
+          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          echo "Using Android SDK root: ${SDK_ROOT}"
+          SDKMANAGER_BIN=""
+          if [ -x "${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" ]; then
+            SDKMANAGER_BIN="${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
+          elif [ -d "${SDK_ROOT}/cmdline-tools" ]; then
+            SDKMANAGER_BIN="$(find "${SDK_ROOT}/cmdline-tools" -maxdepth 3 -type f -name sdkmanager 2>/dev/null | head -n 1 || true)"
+          fi
+          if [ -n "$SDKMANAGER_BIN" ] && [ -x "$SDKMANAGER_BIN" ]; then
+            echo "Using sdkmanager: ${SDKMANAGER_BIN}"
+            set +o pipefail
+            yes | "$SDKMANAGER_BIN" --sdk_root="$SDK_ROOT" --licenses >/dev/null 2>&1 || true
+            set -o pipefail
+            "$SDKMANAGER_BIN" --sdk_root="$SDK_ROOT" \
+              "platform-tools" \
+              "build-tools;36.0.0" \
+              "platforms;android-36" \
+              "platforms;android-36.1" || true
+          else
+            echo "::warning::sdkmanager not found under ${SDK_ROOT}; relying on preinstalled SDK packages."
+          fi
+
       - name: Build debug APK
         run: gradle :app:assembleDebug --stacktrace --no-daemon
 
